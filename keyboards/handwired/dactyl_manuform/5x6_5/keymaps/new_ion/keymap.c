@@ -14,25 +14,29 @@ enum dm_layers{
     _ADJUST,
 };
 
+/*
 enum dm_keycodes
 {
     QWERTY = SAFE_RANGE,
     COLEMAK
 };
+*/
 
 
 #define RAISE MO(_RAISE)
 #define LOWER MO(_LOWER)
+#define QWERTY TG(_QWERTY)
+#define COLEMAK TG(_COLEMAK)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
   [_QWERTY] = LAYOUT_5x6_5(
      KC_ESC , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_BSPC,
-     KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  ,KC_MINS,
-     KC_HOME, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_QUOT,
+     KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  ,KC_PLUS,
+     KC_HOME, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_EQUAL,
      KC_END, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,                         KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH,KC_BSLASH,
-                    KC_LBRC, KC_RBRC,                                                       KC_PLUS, KC_EQL,
+                    KC_LBRC, KC_RBRC,                                                       KC_MINS, KC_QUOT,
                                     KC_LSPO, KC_LGUI,                       KC_ENT, KC_SPC,
                                     KC_LCTL, KC_LALT , LOWER,        RAISE, KC_RSPC, KC_CAPS
                                                                             
@@ -95,19 +99,18 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
-
+/*
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
-        print("mode just switched to qwerty and this is a huge string\n");
-        set_single_persistent_default_layer(_QWERTY);
+        TG(_QWERTY);
       }
       return false;
       break;
     case COLEMAK:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
+        TG(_COLEMAK);
       }
       return false;
       break;
@@ -115,7 +118,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
     
-
+*/
 
 
 
